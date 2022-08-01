@@ -21,9 +21,9 @@ where rental_rate = (SELECT MIN(rental_rate) from film)
 and replacement_cost = (SELECT MIN(replacement_cost)from film);
 
 --4.soru
-select first_name, last_name from customer 
-where customer_id ANY (
-    SELECT customer_id from payment
-    order by amount
-);
+select first_name, last_name , count(*) from payment
+JOIN customer on customer.customer_id=payment.customer_id
+group by customer.customer_id;
+order by count(*) DESC;
+
 
